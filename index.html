@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS S3 Portfolio</title>
+    <style>
+        :root {
+            /* AWS Color Palette */
+            --aws-orange: #FF9900;
+            --aws-blue: #232F3E;
+            --aws-light-blue: #2B3C59;
+            --aws-dark-gray: #16191F;
+            --aws-light-gray: #EAEDED;
+            --aws-white: #FFFFFF;
+            --aws-border: #4D5C70;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Amazon Ember', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--aws-light-gray);
+            color: var(--aws-dark-gray);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--aws-blue);
+            color: var(--aws-white);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 4px solid var(--aws-orange);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        h2 {
+            color: var(--aws-blue);
+            border-bottom: 3px solid var(--aws-orange);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        article {
+            background-color: var(--aws-white);
+            border-radius: 8px;
+            border: 1px solid var(--aws-border);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        h3 {
+            color: var(--aws-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        a {
+            display: inline-block;
+            background-color: var(--aws-orange);
+            color: var(--aws-white);
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 0.5rem 0 1rem 0;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        a:hover {
+            background-color: #E88804;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        pre {
+            background-color: var(--aws-light-gray);
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid var(--aws-border);
+        }
+        
+        code {
+            font-family: monospace;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-top: 1rem;
+            border: 1px solid var(--aws-border);
+        }
+        
+        footer {
+            background-color: var(--aws-blue);
+            color: var(--aws-white);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-top: 4px solid var(--aws-orange);
+        }
+
+        /* AWS Service Icons */
+        .service-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        /* Project header with icon */
+        .project-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Added for content structure */
+        .content-section {
+            margin-bottom: 2rem;
+        }
+        
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            article {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Amazon S3 Tutorial Project</h1>
+        <p>Understanding S3 Core Concepts for AWS Certification</p>
+    </header>
+    
+    <section>
+        <h2>Introduction</h2>
+        <article>
+            <p>This tutorial project demonstrates my comprehensive understanding of Amazon S3 (Simple Storage Service), one of AWS's foundational services. Through hands-on examples, I explore the essential S3 features relevant for AWS certification and real-world implementation.</p>
+        </article>
+        
+        <h2>Projects Overview</h2>
+        
+        <article>
+            <div class="project-header">
+                <img src="/api/placeholder/40/40" alt="S3 Icon" class="service-icon">
+                <h3>Creating S3 Buckets</h3>
+            </div>
+            <p>Creating an S3 bucket requires understanding several key concepts:</p>
+            
+            <div class="content-section">
+                <h4>Region Selection</h4>
+                <p>When creating a bucket, I first selected a region (eu-north-1 in this example). While S3 provides a global view of all buckets across regions, each bucket exists in one specific region.</p>
+                
+                <h4>Bucket Types</h4>
+                <p>AWS offers two types of buckets:</p>
+                <ul>
+                    <li><strong>General Purpose buckets</strong> (recommended for most use cases)</li>
+                    <li><strong>Directory buckets</strong> (for specific use cases, not covered in AWS certification exams)</li>
+                </ul>
+                <p>If the bucket type selection isn't available in your region, the bucket will automatically be created as a general purpose bucket.</p>
+                
+                <h4>Bucket Naming</h4>
+                <p>The most critical rule for bucket naming is <strong>global uniqueness</strong>. Bucket names must be unique across:</p>
+                <ul>
+                    <li>All AWS regions</li>
+                    <li>All AWS accounts</li>
+                    <li>All time (even deleted bucket names remain reserved)</li>
+                </ul>
+                <p>For this reason, I used a naming pattern that included my name, the project, and a version number: <code>stephane-demo-s3-v5</code>.</p>
+                
+                <h4>Key Security Settings</h4>
+                <p>When creating the bucket, I maintained the default security settings:</p>
+                <ul>
+                    <li><strong>Object Ownership</strong>: ACL disabled (recommended)</li>
+                    <li><strong>Block Public Access</strong>: All public access blocked (highest security)</li>
+                    <li><strong>Bucket Versioning</strong>: Initially disabled (will enable later)</li>
+                    <li><strong>Default Encryption</strong>: Server-side encryption with Amazon S3 managed keys (SSE-S3)</li>
+                    <li><strong>Bucket Key</strong>: Enabled</li>
+                </ul>
+            </div>
+            <img src="/api/placeholder/800/400" alt="S3 Bucket Creation Screenshot">
+        </article>
+        
+        <article>
+            <div class="project-header">
+                <img src="/api/placeholder/40/40" alt="S3 Upload Icon" class="service-icon">
+                <h3>Uploading Objects to S3</h3>
+            </div>
+            <p>After bucket creation, I uploaded objects to demonstrate S3's storage capabilities:</p>
+            
+            <ol>
+                <li>I uploaded a file called <code>coffee.jpg</code> (100KB) to the bucket</li>
+                <li>Navigated to the object details page to examine its properties</li>
+                <li>Demonstrated two methods of accessing the file:
+                    <ul>
+                        <li>Using the S3 console's "Open" feature (works because I own the bucket)</li>
+                        <li>Trying the public URL (initially fails with "Access Denied" due to default security settings)</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <div class="content-section">
+                <h4>Working with Folders</h4>
+                <p>S3 doesn't actually have folders in the traditional sense - it simulates a folder structure through prefixes in object keys. However, the S3 console provides a folder-like interface for organization:</p>
+                
+                <ol>
+                    <li>I created a folder called "images"</li>
+                    <li>Uploaded <code>beach.jpg</code> into the images folder</li>
+                    <li>Demonstrated how to navigate the folder structure</li>
+                    <li>Showed how to delete folders, which actually deletes all objects with that prefix</li>
+                </ol>
+            </div>
+            <img src="/api/placeholder/800/400" alt="S3 Object Upload Screenshot">
+        </article>
+        
+        <article>
+            <div class="project-header">
+                <img src="/api/placeholder/40/40" alt="S3 Security Icon" class="service-icon">
+                <h3>Working with Bucket Policies</h3>
+            </div>
+            <p>To make objects publicly accessible, I implemented a bucket policy:</p>
+            
+            <div class="content-section">
+                <h4>Allowing Public Access</h4>
+                <ol>
+                    <li>First, I modified the bucket settings to allow public access by editing the "Block Public Access" settings</li>
+                    <li>I acknowledged the security warning, understanding that this is appropriate only for content that should be publicly available</li>
+                </ol>
+                
+                <h4>Creating a Bucket Policy</h4>
+                <ol>
+                    <li>Navigated to the Permissions tab and selected Bucket Policy</li>
+                    <li>Used the AWS Policy Generator to create an appropriate policy:
+                        <ul>
+                            <li>Effect: Allow</li>
+                            <li>Principal: * (everyone)</li>
+                            <li>Action: s3:GetObject</li>
+                            <li>Resource: ARN of my bucket followed by "/*" to indicate all objects</li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <p>The resulting policy:</p>
+                <pre><code>{
+  "Id": "Policy1649248504940",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1649248501271",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::stephane-demo-s3-v5/*",
+      "Principal": "*"
+    }
+  ]
+}</code></pre>
+                
+                <p>After applying this policy, I confirmed that my <code>coffee.jpg</code> image was now publicly accessible via its object URL.</p>
+            </div>
+            <img src="/api/placeholder/800/400" alt="S3 Bucket Policy Screenshot">
+        </article>
+        
+        <article>
+            <div class="project-header">
+                <img src="/api/placeholder/40/40" alt="Website Hosting Icon" class="service-icon">
+                <h3>Static Website Hosting</h3>
+            </div>
+            <p>S3 offers the ability to host static websites directly from a bucket, which I demonstrated by:</p>
+            
+            <ol>
+                <li>Uploading two image files: <code>coffee.jpg</code> and <code>beach.jpg</code></li>
+                <li>Enabling static website hosting under the bucket Properties tab</li>
+                <li>Setting <code>index.html</code> as the index document</li>
+                <li>Creating and uploading an <code>index.html</code> file with basic HTML content referencing the images</li>
+                <li>Accessing the website using the bucket website endpoint URL</li>
+                <li>Verifying that all linked resources (images) were properly loading</li>
+            </ol>
+            
+            <p>My simple <code>index.html</code> file contained:</p>
+            <pre><code>&lt;html&gt;
+&lt;body&gt;
+&lt;h1&gt;I love coffee&lt;/h1&gt;
+&lt;p&gt;Hello world!&lt;/p&gt;
+&lt;img src="coffee.jpg"&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            
+            <p>This demonstrates how S3 can serve as a cost-effective hosting solution for static websites without requiring web servers.</p>
+            <img src="/api/placeholder/800/400" alt="S3 Static Website Screenshot">
+        </article>
+        
+        <article>
+            <div class="project-header">
+                <img src="/api/placeholder/40/40" alt="Versioning Icon" class="service-icon">
+                <h3>S3 Versioning</h3>
+            </div>
+            <p>Versioning is a critical S3 feature that maintains multiple versions of objects to protect against accidental deletions and modifications:</p>
+            
+            <ol>
+                <li>I enabled versioning under the bucket Properties tab</li>
+                <li>Modified my <code>index.html</code> file to say "I REALLY love coffee" instead of "I love coffee"</li>
+                <li>Uploaded the updated file to S3, overwriting the previous version</li>
+                <li>Verified the website displayed the updated content</li>
+                <li>Used the "Show versions" toggle to reveal both versions of the file:
+                    <ul>
+                        <li>The original version (with null version ID, uploaded before versioning was enabled)</li>
+                        <li>The new version (with a unique version ID)</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <div class="content-section">
+                <h4>Working with Versions and Delete Markers</h4>
+                <p>I demonstrated version management through:</p>
+                
+                <ol>
+                    <li><strong>Rollback</strong>: Deleting the newer version (permanent deletion of a specific version) to restore the previous content</li>
+                    <li><strong>Delete markers</strong>: Deleting an object in a versioned bucket creates a "delete marker" rather than permanently removing content</li>
+                    <li><strong>Restoration</strong>: Removing the delete marker to restore the previously "deleted" object</li>
+                </ol>
+                
+                <p>This exercise illustrated how versioning provides robust protection against data loss while maintaining a history of changes.</p>
+            </div>
+            <img src="/api/placeholder/800/400" alt="S3 Versioning Screenshot">
+        </article>
+        
+        <article>
+            <div class="project-header">
+                <img src="/api/placeholder/40/40" alt="Replication Icon" class="service-icon">
+                <h3>S3 Replication</h3>
+            </div>
+            <p>S3 replication allows automatic copying of objects between buckets, which I demonstrated by:</p>
+            
+            <ol>
+                <li>Creating two buckets:
+                    <ul>
+                        <li>Origin bucket: <code>s3-stephane-bucket-origin-v2</code> in eu-west-1</li>
+                        <li>Replica bucket: <code>s3-stephane-bucket-replica-v2</code> in us-east-1</li>
+                    </ul>
+                </li>
+                <li>Enabling versioning on both buckets (required for replication)</li>
+                <li>Uploading an initial test file (<code>beach.jpg</code>) to the origin bucket</li>
+                <li>Configuring replication:
+                    <ul>
+                        <li>Created a replication rule named "DemoReplicationRule"</li>
+                        <li>Set the source as all objects in the origin bucket</li>
+                        <li>Selected the replica bucket as the destination</li>
+                        <li>Created a new IAM role for replication permissions</li>
+                        <li>Opted not to replicate existing objects</li>
+                    </ul>
+                </li>
+                <li>Testing replication by:
+                    <ul>
+                        <li>Uploading a new file (<code>coffee.jpg</code>) to the origin bucket</li>
+                        <li>Verifying it appeared in the replica bucket with identical version IDs</li>
+                        <li>Uploading a new version of <code>beach.jpg</code> and confirming it replicated</li>
+                        <li>Enabling delete marker replication in the replication settings</li>
+                        <li>Verifying that delete markers get replicated while permanent deletions do not</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <p>This exercise demonstrated Cross-Region Replication (CRR), which provides geographical redundancy, compliance support, and improved access latency for global users.</p>
+            <img src="/api/placeholder/800/400" alt="S3 Replication Screenshot">
+        </article>
+        
+        <article>
+            <div class="project-header">
+                <img src="/api/placeholder/40/40" alt="Storage Classes Icon" class="service-icon">
+                <h3>S3 Storage Classes</h3>
+            </div>
+            <p>S3 offers multiple storage classes to optimize cost and performance. I explored these by:</p>
+            
+            <ol>
+                <li>Creating a new bucket named <code>s3-storage-classes-demos-2022</code></li>
+                <li>Uploading an object (<code>coffee.jpg</code>) while examining available storage classes:
+                    <ul>
+                        <li><strong>S3 Standard</strong>: Default class with high durability, availability, and performance</li>
+                        <li><strong>S3 Intelligent-Tiering</strong>: Automatically moves objects between tiers based on access patterns</li>
+                        <li><strong>S3 Standard-IA</strong>: For infrequently accessed data with low latency requirements</li>
+                        <li><strong>S3 One-Zone-IA</strong>: Lower cost option storing data in a single AZ</li>
+                        <li><strong>Glacier Instant Retrieval</strong>: For archive data needing immediate access</li>
+                        <li><strong>Glacier Flexible Retrieval</strong>: For archive data with retrieval times from minutes to hours</li>
+                        <li><strong>Glacier Deep Archive</strong>: Lowest-cost storage for rarely accessed data with retrieval times of hours</li>
+                        <li><strong>Reduced Redundancy</strong>: Deprecated storage class</li>
+                    </ul>
+                </li>
+                <li>Demonstrating storage class transitions:
+                    <ul>
+                        <li>Uploading an object with Standard-IA class</li>
+                        <li>Changing the storage class to One-Zone-IA through the object properties</li>
+                        <li>Further changing it to Glacier Instant Retrieval</li>
+                    </ul>
+                </li>
+                <li>Creating an automated Lifecycle Rule ("DemoRule") to automatically transition objects between storage classes:
+                    <ul>
+                        <li>Move to Standard-IA after 30 days</li>
+                        <li>Move to Intelligent-Tiering after 60 days</li>
+                        <li>Move to Glacier Flexible Retrieval after 180 days</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <p>This exercise demonstrated how storage classes can be leveraged to optimize costs based on data access patterns and retention requirements.</p>
+            <img src="/api/placeholder/800/400" alt="S3 Storage Classes Screenshot">
+        </article>
+        
+        <article>
+            <div class="project-header">
+                <img src="/api/placeholder/40/40" alt="Summary Icon" class="service-icon">
+                <h3>Summary and Best Practices</h3>
+            </div>
+            <div class="content-section">
+                <p>Throughout this project, I've demonstrated proficiency with Amazon S3's core features that are critical for AWS certification and real-world application:</p>
+                
+                <h4>Key Concepts Mastered:</h4>
+                <ul>
+                    <li>Bucket creation and naming conventions</li>
+                    <li>Object upload and management</li>
+                    <li>Security configuration through bucket policies</li>
+                    <li>Static website hosting</li>
+                    <li>Data protection through versioning</li>
+                    <li>Geographical redundancy with replication</li>
+                    <li>Cost optimization with storage classes and lifecycle policies</li>
+                </ul>
+                
+                <h4>Best Practices:</h4>
+                <ol>
+                    <li><strong>Security</strong>: Block public access by default, use bucket policies judiciously</li>
+                    <li><strong>Data Protection</strong>: Enable versioning for important buckets</li>
+                    <li><strong>Redundancy</strong>: Use replication for critical data</li>
+                    <li><strong>Cost Optimization</strong>: Implement lifecycle policies to transition data to appropriate storage classes</li>
+                    <li><strong>Organization</strong>: Use prefixes (folders) to structure data logically</li>
+                </ol>
+                
+                <p>This project demonstrates my comprehensive understanding of Amazon S3 and readiness to implement S3-based solutions in production environments and pass relevant AWS certification exams.</p>
+            </div>
+            <img src="/api/placeholder/800/400" alt="AWS S3 Dashboard Overview">
+        </article>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 | AWS Solutions Architect Portfolio | Amazon S3 Tutorial Project</p>
+    </footer>
+</body>
+</html>
